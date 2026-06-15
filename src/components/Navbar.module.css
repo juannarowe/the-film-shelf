@@ -1,0 +1,11 @@
+.navbar {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    font-size: 2rem;
+    list-style: none;
+}
