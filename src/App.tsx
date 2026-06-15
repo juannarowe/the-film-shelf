@@ -1,11 +1,10 @@
 import './App.css'
-import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <>
-    <Navbar />
+    
       <section id="center">
         <div>
           <h1>The Film Shelf</h1>
