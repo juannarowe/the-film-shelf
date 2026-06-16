@@ -1,8 +1,8 @@
 import { useParams } from "react-router"
 
 export default function FilmDetail() {
-    const params = useParams<{id: string}>()
-    console.log(params)
+    const {id} = useParams<{id: string}>()
+    
     return (
         <div className="">
             <h1>Film Detail Page</h1>

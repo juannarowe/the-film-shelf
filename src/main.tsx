@@ -7,23 +7,28 @@ import FilmDetail from './pages/FilmDetail/FilmDetail'
 import LogIn from './pages/LogIn/LogIn'
 import Favorites from './pages/Favorites/Favorites'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import NotFoundPage from './pages/NotFoundPage'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <NotFoundPage />
-  },
-  {
-    path: "/explore",
-    element: <Explore />,
-  },
-  {
-    path: "/film-detail/:id",
-    element: <FilmDetail />,
+    element: <Layout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      { 
+        path: "/",
+        element: <App /> },
+      {
+        path: "/explore",
+        element: <Explore />,
+      },
+      {
+        path: "/film-detail/:id",
+        element: <FilmDetail />,
+      },
+    ]
   },
 ])
 
