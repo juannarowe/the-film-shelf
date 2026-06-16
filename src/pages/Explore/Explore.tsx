@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import getMovies from '../../services/TMDB'
+import { Link } from 'react-router'
 
 interface Movie {
     id: number
@@ -9,6 +10,8 @@ interface Movie {
     poster_path: string
 }
 
+const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500'
+
 export default function Explore() {
     // First I create the state:
     const [movies, setMovies] = useState<Movie[]>([])
@@ -16,7 +19,6 @@ export default function Explore() {
     // Then, call the function to get the movies. When the movies arrive, save them in the state.
     useEffect(() => {
         getMovies().then((data) => {
-            console.log(data)
             setMovies(data)})
     }, [])
 
@@ -24,9 +26,9 @@ export default function Explore() {
     return (
         <div>
             {movies.map(movie => (
-                <div key={movie.id}>
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                </div>
+                <Link key={movie.id} to={`/film-detail/${movie.id}`}>
+                    <img src={`${IMG_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+                </Link>
             ))}
         </div>
         )
