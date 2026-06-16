@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import getMovies from '../../services/TMDB'
+import { getMovies } from '../../services/TMDB'
 import { Link } from 'react-router'
 
 interface Movie {
