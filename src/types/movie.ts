@@ -9,3 +9,19 @@ export interface Movie {
     original_language: string;
     vote_average: number;
 }
+
+export interface CastMember {
+    id: number
+    name: string
+}
+
+export interface CrewMember {
+    credit_id: string
+    job: string
+    name: string
+}
+
+export interface Credits {
+    cast: CastMember[]
+    crew: CrewMember[]
+}
