@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { getMovies, searchMovies, searchMoviesbyGenre } from '../../services/TMDB'
 import { Link } from 'react-router'
 import type { Movie } from '../../types/movie'
-
-const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500'
+import getImageUrl from '../../utils/getImageUrl'
 
 export default function Explore() {
     const [movies, setMovies] = useState<Movie[]>([])
@@ -60,7 +59,7 @@ export default function Explore() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {movies.map(movie => (
                     <Link key={movie.id} to={`/film-detail/${movie.id}`} className="block hover:opacity-75 transition-opacity">
-                        <img src={`${IMG_BASE_URL}${movie.poster_path}`} alt={movie.title} className="rounded-lg w-full object-cover" />
+                        <img src={getImageUrl(movie.poster_path)} alt={movie.title} className="rounded-lg w-full object-cover" />
                     </Link>
                 ))}
             </div>
