@@ -42,3 +42,13 @@ export async function searchMovies(query: string) {
         throw new Error("Error searching the movie.")
     }
 }
+
+export async function searchMoviesbyGenre(genreId: number) {
+    try {
+        const response = await fetch(`${SEARCH_BASE_URL}${API_KEY}&with_genres=${genreId}}`)
+        const data = await response.json()
+        return data.results
+    } catch (error) {
+        throw new Error("Error searching the movie by genre.")
+    }
+}
