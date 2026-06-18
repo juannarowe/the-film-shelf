@@ -43,7 +43,7 @@ export default function Explore() {
             <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
                 <div className="flex gap-2">
                     <input ref={searchRef} type="search" placeholder="Search" className="bg-gray-800 text-white border border-gray-700 rounded px-3 py-2 focus:outline-none focus:border-white" />
-                    <button onClick={handleSearch} className="bg-white hover:bg-gray-200 text-gray-900 font-semibold px-4 py-2 rounded transition-colors">Search</button>
+                    <button onClick={handleSearch} className="cursor-pointer bg-white hover:bg-gray-200 text-gray-900 font-semibold px-4 py-2 rounded transition-colors">Search</button>
                 </div>
                 <div>
                     <select onChange={handleFilterByGenre} className="bg-gray-800 text-white border border-gray-700 rounded px-3 py-2 focus:outline-none">
