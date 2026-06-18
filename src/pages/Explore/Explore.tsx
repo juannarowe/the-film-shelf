@@ -40,13 +40,13 @@ export default function Explore() {
 
     return (
         <>
-            <div>
-                <div>
-                    <input ref={searchRef} type="search" placeholder="Search" />
-                    <button onClick={handleSearch}>Search</button>
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
+                <div className="flex gap-2">
+                    <input ref={searchRef} type="search" placeholder="Search" className="bg-gray-800 text-white border border-gray-700 rounded px-3 py-2 focus:outline-none focus:border-white" />
+                    <button onClick={handleSearch} className="bg-white hover:bg-gray-200 text-gray-900 font-semibold px-4 py-2 rounded transition-colors">Search</button>
                 </div>
                 <div>
-                    <select onChange={handleFilterByGenre}>
+                    <select onChange={handleFilterByGenre} className="bg-gray-800 text-white border border-gray-700 rounded px-3 py-2 focus:outline-none">
                         <option value="">All Genres</option>
                         <option value="28">Action</option>
                         <option value="35">Comedy</option>
@@ -57,10 +57,10 @@ export default function Explore() {
                     </select>
                 </div>
             </div>
-            <div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {movies.map(movie => (
-                    <Link key={movie.id} to={`/film-detail/${movie.id}`}>
-                        <img src={`${IMG_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+                    <Link key={movie.id} to={`/film-detail/${movie.id}`} className="block hover:opacity-75 transition-opacity">
+                        <img src={`${IMG_BASE_URL}${movie.poster_path}`} alt={movie.title} className="rounded-lg w-full object-cover" />
                     </Link>
                 ))}
             </div>
