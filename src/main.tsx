@@ -9,6 +9,7 @@ import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import NotFoundPage from './pages/NotFoundPage'
 import { AuthProvider } from './context/authContext'
+import Profile from './pages/Profile/Profile'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LogIn />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ]
   },
