@@ -45,7 +45,7 @@ export async function searchMovies(query: string) {
 
 export async function searchMoviesbyGenre(genreId: number) {
     try {
-        const response = await fetch(`${SEARCH_BASE_URL}${API_KEY}&with_genres=${genreId}}`)
+        const response = await fetch(`${BASE_URL}${API_KEY}&with_genres=${genreId}`)
         const data = await response.json()
         return data.results
     } catch (error) {
