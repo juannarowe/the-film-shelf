@@ -1,8 +1,19 @@
+import { useAuth } from '../../context/authContext'
+import { useNavigate } from 'react-router'
+
 export default function LogIn() {
+    const { loginWithGoogle } = useAuth()
+    const navigate = useNavigate()
+
+    async function handleLogin() {
+        await loginWithGoogle()
+        navigate('/')
+    }
+
     return (
-        <div className="">
-            <h1>Log In Page</h1>
-            <p>Log in to your account here!</p>
+        <div>
+            <h1>Log In</h1>
+            <button onClick={handleLogin}>Login com Google</button>
         </div>
     )
 }
