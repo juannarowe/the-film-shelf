@@ -1,30 +1,24 @@
 import { useState, useEffect, useRef } from 'react'
-import { getMovies } from '../../services/TMDB'
+import { getMovies, searchMovies } from '../../services/TMDB'
 import { Link } from 'react-router'
-
-export interface Movie {
-    id: number;
-    title: string;
-    genre_ids: number[];
-    overview: string;
-    poster_path: string;
-    release_date: string;
-    original_title: string;
-    original_language: string;
-    vote_average: number;
-}
+import type { Movie } from '../../types/movie'
 
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
 export default function Explore() {
     const [movies, setMovies] = useState<Movie[]>([])
-    const [searchTerm, setSearchTerm] = useState<string>('')
 
     const searchRef = useRef<HTMLInputElement>(null)
 
-    function handleSearch() {
-        const term = searchRef.current?.value.toLowerCase() || ''
-        setSearchTerm(term)
+    async function handleSearch() {
+        const term = searchRef.current?.value || ''
+        if (term.trim() === '') {
+            const data = await getMovies()
+            setMovies(data)
+            return
+        }
+        const data = await searchMovies(term)
+        setMovies(data)
     }
 
     useEffect(() => {
@@ -32,10 +26,6 @@ export default function Explore() {
             setMovies(data)
         })
     }, [])
-
-    const filteredMovies = movies.filter(movie =>
-        movie.title.toLowerCase().includes(searchTerm)
-    )
 
     return (
         <>
@@ -46,7 +36,7 @@ export default function Explore() {
                 </div>
             </div>
             <div>
-                {filteredMovies.map(movie => (
+                {movies.map(movie => (
                     <Link key={movie.id} to={`/film-detail/${movie.id}`}>
                         <img src={`${IMG_BASE_URL}${movie.poster_path}`} alt={movie.title} />
                     </Link>
