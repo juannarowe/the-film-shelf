@@ -8,6 +8,7 @@ import LogIn from './pages/LogIn/LogIn'
 import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import NotFoundPage from './pages/NotFoundPage'
+import { AuthProvider } from './context/authContext'
 
 const router = createBrowserRouter([
   {
@@ -15,9 +16,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <NotFoundPage />,
     children: [
-      { 
+      {
         path: "/",
-        element: <App /> },
+        element: <App />
+      },
       {
         path: "/explore",
         element: <Explore />,
@@ -36,6 +38,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>
 )
