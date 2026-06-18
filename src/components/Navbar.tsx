@@ -8,7 +8,7 @@ export default function Navbar() {
     console.log(user)
 
     return (
-        <div className="flex items-center justify-between px-6 py-4 bg-gray-950 border-b border-gray-800">
+        <div className="flex items-center justify-between px-6 py-4 bg-gray-950">
             <NavLink to="/">
                 <h1 className="text-xl font-bold text-white">The Film Shelf</h1>
             </NavLink>
