@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react'
-import { signInWithPopup, signOut } from 'firebase/auth'
+import { createContext, useContext, useState, useEffect } from 'react'
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { auth, googleProvider } from '../services/firebase'
 import type { ReactNode } from 'react'
 import type { User } from 'firebase/auth'
@@ -24,6 +24,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await signOut(auth)
         setUser(null)
     }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            setUser(firebaseUser)
+        })
+        return unsubscribe
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user, loginWithGoogle, logout }}>
