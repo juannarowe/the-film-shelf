@@ -5,8 +5,6 @@ import App from './App'
 import Explore from './pages/Explore/Explore'
 import FilmDetail from './pages/FilmDetail/FilmDetail'
 import LogIn from './pages/LogIn/LogIn'
-import Favorites from './pages/Favorites/Favorites'
-import Navbar from './components/Navbar'
 import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import NotFoundPage from './pages/NotFoundPage'
@@ -27,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/film-detail/:id",
         element: <FilmDetail />,
+      },
+      {
+        path: "/login",
+        element: <LogIn />,
       },
     ]
   },
