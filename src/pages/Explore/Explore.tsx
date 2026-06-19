@@ -7,9 +7,11 @@ import getImageUrl from '../../utils/getImageUrl'
 export default function Explore() {
     const [movies, setMovies] = useState<Movie[]>([])
 
+    // useRef for the search input (not useState, because we don't need to re-render on every keystroke)
     const searchRef = useRef<HTMLInputElement>(null)
 
     async function handleSearch() {
+        // Why the "?": if searchRef.current is null (which can happen if the component is unmounted), we don't want to throw an error. Instead, we just use an empty string as the search term.
         const term = searchRef.current?.value || ''
         if (term.trim() === '') {
             const data = await getMovies()
